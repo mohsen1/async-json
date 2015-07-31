@@ -23,6 +23,16 @@ JSON.stringifyAsync({foo: 1}).then(result => console.log(result));
 // '{"foo": 1}'
 ```
 
+#### With `await`
+Because `JSON.stringifyAsync` and `JSON.parseAsync` are returning promises, they can be used with `await` as a drop-in replacement of sync methods.
+
+```js
+async ()=> {
+  let result = await JSON.parseAsync(jsonString);
+  let object = await JSON.stringifyAsync(anObject);
+}();
+```
+
 
 #### Transpilation / Polyfill
 
