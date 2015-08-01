@@ -42,7 +42,7 @@ async ()=> {
 
 #### Transpilation / Polyfill
 
-There is no way of transpilating the actual effect of this proposal. But instead we can write a polyfill that keeps API consistent while it's using the main thread fro parsing and stringifying tasks.
+There is no way of transpilating the actual effect of this proposal. But instead we can write a polyfill that keeps API consistent while it's using the main thread for parsing and stringifying tasks.
 
 
 ```js
