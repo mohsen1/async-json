@@ -41,22 +41,10 @@ There is no way of transpilating the actual effect of this proposal. But it's ve
 
 ```js
 JSON.stringifyAsync = JSON.stringifyAsync || function (object) {
-  return new Promise((resolve, reject) => {
-    try {
-      resolve(JSON.stringify(object));
-    } catch (error) {
-      reject(error);
-    }
-  });
+  return new Promise(resolve => resolve(JSON.stringify(object)));
 }
 
 JSON.parseAsync = JSON.parseAsync || function (string) {
-  return new Promise((resolve, reject) => {
-    try {
-      resolve(JSON.parse(string));
-    } catch (error) {
-      reject(error);
-    }
-  });
+  return new Promise(resolve => resolve(JSON.parse(string)));
 }
 ```
