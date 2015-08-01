@@ -6,7 +6,7 @@ To avoid blockage of the main thread by `JSON.parse` and `JSON.stringify` we are
 
 The asynchronous JSON methods keep the function signature the same with synchronous methods except they return a promise instead of value/string. This helps the overall API consistency.
 
-### `JSON.parseAsync( text [ , reviver ] )`
+## `JSON.parseAsync( text [ , reviver ] )`
 
 The `parseAsync` function parses a JSON text (a JSON-formatted String) and produces a `Promise` [(ECMA-262 §25.4)][promise] object that then resolves to a ECMAScript value. It uses `JSON.parse` [(ECMA-262 §24.3.1)][parse] in a background thread to produce the result to avoid blockage of the main thread during the parse task.
 
@@ -18,7 +18,7 @@ JSON.parseAsync('{"foo": 1}').then(result => console.log(result));
 // {foo: 1}
 ```
 
-#### `JSON.stringifyAsync( value [ , replacer [ , space ] ] )`
+## `JSON.stringifyAsync( value [ , replacer [ , space ] ] )`
 
 The `stringifyAsync` function returns a `Promise` [(ECMA-262 §25.4)][promise] object that then resolves to a String in UTF-16 encoded JSON format representing an ECMAScript value. It uses `JSON.stringify` [(ECMA-262 §24.3.2)][stringify] in a background thread to produce the result to avoid the blockage of the main thread during the stringify task.
 
