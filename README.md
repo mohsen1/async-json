@@ -1,4 +1,4 @@
-# Asynchronous JSON Methods Proposal
+# Asynchronous JSON methods for ECMAScript proposal
 
 JavaScript programs are single-threaded and therefore must streadfastly avoid blocking on IO operations. `JSON.parse` and `JSON.stringify` are both blocking operations. For large JSON strings to parse or objects to stringify the blocking time can be very significant.
 
@@ -24,6 +24,7 @@ The `stringifyAsync` function returns a `Promise` [(ECMA-262 §25.4)][promise] o
 
 It can take three parameters. The *`value`* parameter is an ECMAScript value, which is usually an object or array, although it can also be a String, Boolean, Number or **`null`**. The optional *`replacer`* parameter is either a function that alters the way objects and arrays are stringified, or an array of Strings and Numbers that acts as a white list for selecting the object properties that will be stringified. The optional `space` parameter is a String or Number that allows the result to have white space injected into it to improve human readability.
 
+##### Example
 ```js
 JSON.stringifyAsync({foo: 1}).then(result => console.log(result));
 // '{"foo": 1}'
