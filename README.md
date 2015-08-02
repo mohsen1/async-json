@@ -42,19 +42,20 @@ async ()=> {
 
 #### Transpilation / Polyfill
 
-There is no way of transpilating the actual effect of this proposal. But instead we can write a polyfill that keeps API consistent while it's using the main thread for parsing and stringifying tasks.
+There is no way of transpilating the actual effect of this proposal. But instead we can write a polyfill that keeps API consistent while it's using the main thread for parsing and stringifying tasks. We are using [`setImmediate`][set-immediate] to perfom the sync operation in the next processor tick.
 
 
 ```js
 JSON.stringifyAsync = JSON.stringifyAsync || function (object) {
-  return new Promise(resolve => resolve(JSON.stringify(object)));
+  return new Promise(resolve => setImmediate(resolve(JSON.stringify(object))));
 }
 
 JSON.parseAsync = JSON.parseAsync || function (string) {
-  return new Promise(resolve => resolve(JSON.parse(string)));
+  return new Promise(resolve => setImmediate(resolve(JSON.parse(string))));
 }
 ```
 
 [parse]: http://www.ecma-international.org/ecma-262/6.0/#sec-json.parse
 [promise]: http://www.ecma-international.org/ecma-262/6.0/#sec-promise-objects
 [stringify]: http://www.ecma-international.org/ecma-262/6.0/#sec-json.stringify
+[set-immediate]: https://developer.mozilla.org/en-US/docs/Web/API/Window/setImmediate
