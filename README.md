@@ -42,16 +42,16 @@ async ()=> {
 
 #### Transpilation / Polyfill
 
-There is no way of transpilating the actual effect of this proposal. But instead we can write a polyfill that keeps API consistent while it's using the main thread for parsing and stringifying tasks.
+There is no way of transpilating the actual effect of this proposal. But instead we can write a polyfill that keeps API consistent while it's using the main thread for parsing and stringifying tasks. We are using promises to perform the sync operation in the next processor tick.
 
 
 ```js
-JSON.stringifyAsync = JSON.stringifyAsync || function (object) {
-  return new Promise(resolve => resolve(JSON.stringify(object)));
+JSON.parseAsync = JSON.parseAsync || function parseAsync(text, reviver) {
+ return Promise.resolve().then(()=> JSON.parse(text, reviver));
 }
 
-JSON.parseAsync = JSON.parseAsync || function (string) {
-  return new Promise(resolve => resolve(JSON.parse(string)));
+JSON.stringifyAsync = JSON.stringifyAsync || function stringifyAsync(value, replacer, space) {
+ return Promise.resolve().then(()=> JSON.stringify(value, replacer, space));
 }
 ```
 
