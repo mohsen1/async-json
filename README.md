@@ -46,12 +46,12 @@ There is no way of transpilating the actual effect of this proposal. But instead
 
 
 ```js
-JSON.stringifyAsync = JSON.stringifyAsync || function stringifyAsync(...args) {
- return Promise.resolve().then(()=> JSON.parse(...args));
+JSON.parseAsync = JSON.parseAsync || function parseAsync(text, reviver) {
+ return Promise.resolve().then(()=> JSON.parse());
 }
 
-JSON.parseAsync = JSON.parseAsync || function parseAsync(...args) {
- return Promise.resolve().then(()=> JSON.parse(...args));
+JSON.stringifyAsync = JSON.stringifyAsync || function stringifyAsync(value, replacer, space) {
+ return Promise.resolve().then(()=> JSON.parse(value, replacer, space));
 }
 ```
 
