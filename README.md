@@ -47,11 +47,11 @@ There is no way of transpilating the actual effect of this proposal. But instead
 
 ```js
 JSON.parseAsync = JSON.parseAsync || function parseAsync(text, reviver) {
- return Promise.resolve().then(()=> JSON.parse());
+ return Promise.resolve().then(()=> JSON.parse(text, reviver));
 }
 
 JSON.stringifyAsync = JSON.stringifyAsync || function stringifyAsync(value, replacer, space) {
- return Promise.resolve().then(()=> JSON.parse(value, replacer, space));
+ return Promise.resolve().then(()=> JSON.stringify(value, replacer, space));
 }
 ```
 
