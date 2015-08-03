@@ -46,18 +46,13 @@ There is no way of transpilating the actual effect of this proposal. But instead
 
 
 ```js
-JSON.stringifyAsync = JSON.stringifyAsync || function (object) {
-  return new Promise(resolve => {
-    Promise.resolve().then(()=> resolve(JSON.stringify(object)));
-  });
+JSON.stringifyAsync = JSON.stringifyAsync || function stringifyAsync(...args) {
+ return Promise.resolve().then(()=> JSON.parse(...args));
 }
 
-JSON.parseAsync = JSON.stringifyAsync || function (string) {
-  return new Promise(resolve => {
-    Promise.resolve().then(()=> resolve(JSON.parse(string)));
-  });
+JSON.parseAsync = JSON.parseAsync || function parseAsync(...args) {
+ return Promise.resolve().then(()=> JSON.parse(...args));
 }
-
 ```
 
 [parse]: http://www.ecma-international.org/ecma-262/6.0/#sec-json.parse
